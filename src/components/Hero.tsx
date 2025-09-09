@@ -30,7 +30,11 @@ const Hero = () => {
     setShowPortfolio(!showPortfolio);
   };
   
-  const typedName = useTypingEffect("Samuel", 150);
+  // === ANIMATION MODIFICATION START ===
+  // 1. Changed the text to the full phrase.
+  // 2. Reduced the interval from 150ms to 70ms for a smoother, faster effect.
+  const typedIntro = useTypingEffect("Hello! I'm Samuel", 70);
+  // === ANIMATION MODIFICATION END ===
 
   const projects = [
     { title: "My Portfolio", desc: "The interactive portfolio you are currently viewing. Built from scratch to showcase my skills in front-end development and design.", link: "https://0xnotes.lol", tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'] },
@@ -101,10 +105,15 @@ const Hero = () => {
             <span className="text-xl md:text-2xl font-bold text-foreground">J</span>
           </div>
         </div>
+
+        {/* === ANIMATION MODIFICATION START === */}
+        {/* The h1 element now displays the full, smoother animation */}
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-in whitespace-nowrap" style={{ animationDelay: '0.2s' }}>
-          Hello! I'm <span className="text-foreground font-bold">{typedName}</span>
+          {typedIntro}
           <span className="blinking-cursor">|</span>
         </h1>
+        {/* === ANIMATION MODIFICATION END === */}
+        
         <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-border px-3 py-1.5 rounded-full my-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
           AI-Native Full-Stack Developer
         </div>
@@ -144,7 +153,6 @@ const Hero = () => {
                   <Mail size={18} />
                   Work With Me
                 </a>
-                {/* === "Download Resume" BUTTON REMOVED FROM HERE === */}
               </div>
             </div>
 
