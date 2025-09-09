@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
-// 1. IMPORT THE NEW INTERACTIVE BACKGROUND COMPONENT
 import InteractiveDoodleBackground from './InteractiveDoodleBackground';
 
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  // 2. ADD STATE AND LOADING FOR SVG FILE
   const [svgContent, setSvgContent] = useState('');
 
   useEffect(() => {
@@ -21,6 +18,16 @@ const Hero = () => {
     setShowPortfolio(!showPortfolio);
   };
   
+  const handleMenuLinkClick = (sectionId: string) => {
+    if (!showPortfolio) {
+      setShowPortfolio(true);
+    }
+    setIsMenuOpen(false);
+    setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  };
+  
   const projects = [
     { title: "My Portfolio", desc: "The interactive portfolio you are currently viewing. Built from scratch to showcase my skills in front-end development and design.", link: "https://0xnotes.lol", tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'] },
     { title: "OptimumStar", desc: "A quiz app designed to teach the Optimum whitepaper — the world's first high-performance memory infrastructure for any blockchain.", link: "https://optimumstar.quest/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
@@ -32,22 +39,12 @@ const Hero = () => {
     { title: "Blog & Writing", desc: "Technical writing and thought leadership on DeFi, Web3, and AI development.", link: "https://jadeofwallstreet.hashnode.dev/", tags: ['Technical Writing', 'Web3', 'AI'] }
   ];
 
-  const handleMenuLinkClick = (sectionId: string) => {
-    if (!showPortfolio) {
-      setShowPortfolio(true);
-    }
-    setIsMenuOpen(false);
-    setTimeout(() => {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
-  };
-
   return (
-    <div className="min-h-screen text-foreground flex flex-col">
-      {/* 3. RENDER THE INTERACTIVE BACKGROUND - Only if SVG content is loaded */}
+    // UPDATE THIS LINE: Conditionally add the 'portfolio-active' class
+    <div className={`min-h-screen text-foreground flex flex-col ${showPortfolio ? 'portfolio-active' : ''}`}>
+      
       {svgContent && <InteractiveDoodleBackground svgString={svgContent} />}
 
-      {/* Header (All your existing content remains) */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="flex items-center justify-between px-4 py-4">
           <div className="flex items-center gap-2">
@@ -61,7 +58,6 @@ const Hero = () => {
         </div>
       </header>
 
-      {/* Full-screen Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-background z-50 flex flex-col items-center justify-center animate-fade-in">
           <button onClick={() => setIsMenuOpen(false)} className="absolute top-4 right-4 p-2 rounded-md hover:bg-muted transition-colors">
@@ -84,7 +80,6 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Main Profile Section */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 pt-24">
         <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-card border-2 border-border flex items-center justify-center mb-6 animate-fade-in">
           <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-muted flex items-center justify-center">
@@ -123,7 +118,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Portfolio Quick Links */}
         {showPortfolio && <div className="w-full max-w-4xl animate-fade-in space-y-8">
             <div id="contact" className="bg-card rounded-lg p-6 border border-border scroll-mt-20">
               <h3 className="text-xl font-bold text-foreground mb-4">Interested in Working Together?</h3>
