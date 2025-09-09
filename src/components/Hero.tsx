@@ -30,17 +30,16 @@ const Hero = () => {
     setShowPortfolio(!showPortfolio);
   };
   
+  // === NAME CORRECTION: "Samuel" is now spelled correctly. ===
   const typedName = useTypingEffect("Samuel", 150);
 
   return <div className="min-h-screen text-foreground flex flex-col">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/50">
         <div className="flex items-center justify-between px-4 py-4">
-          {/* === HEADER COLOR MODIFICATION START === */}
           <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-terminal-green to-foreground bg-clip-text text-transparent">
             JadeofWallstreet
           </h1>
-          {/* === HEADER COLOR MODIFICATION END === */}
           <button className="p-2 rounded-md bg-muted/20 border border-muted hover:bg-muted/30 transition-all duration-300">
             <Menu size={20} className="text-foreground" />
           </button>
@@ -68,7 +67,7 @@ const Hero = () => {
         </p>
 
         {/* Role Badge */}
-        <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-terminal-green/30 px-3 py-1.5 rounded-full mb-4 animate-fade-in whitespace-nowrap" style={{
+        <div className="inline-.block text-xs sm:text-sm text-muted-foreground border border-terminal-green/30 px-3 py-1.5 rounded-full mb-4 animate-fade-in whitespace-nowrap" style={{
         animationDelay: '0.4s'
       }}>AI-Native Full-Stack Developer</div>
 
