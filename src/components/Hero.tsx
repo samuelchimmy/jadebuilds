@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// Added the 'X' icon for the close button in the menu
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
 
 // A robust typing animation hook
@@ -25,9 +24,7 @@ const useTypingEffect = (textToType: string, interKeyStrokeDurationInMs: number)
 
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
-  // === STATE FOR MENU START ===
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // === STATE FOR MENU END ===
   
   const handleExploreClick = () => {
     setShowPortfolio(!showPortfolio);
@@ -67,14 +64,13 @@ const Hero = () => {
               JadeofWallstreet
             </h1>
           </div>
-          {/* Menu button now opens the overlay */}
           <button onClick={() => setIsMenuOpen(true)} className="p-2 rounded-md border border-border hover:bg-muted transition-all duration-300">
             <Menu size={20} className="text-foreground" />
           </button>
         </div>
       </header>
 
-      {/* === FULL-SCREEN MENU OVERLAY START === */}
+      {/* Full-screen Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-background z-50 flex flex-col items-center justify-center animate-fade-in">
           <button onClick={() => setIsMenuOpen(false)} className="absolute top-4 right-4 p-2 rounded-md hover:bg-muted transition-colors">
@@ -92,16 +88,11 @@ const Hero = () => {
                   Contact
                 </a>
               </li>
-              <li>
-                <a href="https://flowcv.com/resume/d5baa23saiuu" target="_blank" rel="noopener noreferrer" className="text-4xl font-bold text-muted-foreground hover:text-foreground transition-colors">
-                  Resume
-                </a>
-              </li>
+              {/* === "Resume" LINK REMOVED FROM HERE === */}
             </ul>
           </nav>
         </div>
       )}
-      {/* === FULL-SCREEN MENU OVERLAY END === */}
 
       {/* Main Profile Section */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 pt-24">
@@ -143,7 +134,6 @@ const Hero = () => {
 
         {/* Portfolio Quick Links */}
         {showPortfolio && <div className="w-full max-w-4xl animate-fade-in space-y-8">
-            {/* Added id="contact" for scrolling */}
             <div id="contact" className="bg-card rounded-lg p-6 border border-border scroll-mt-20">
               <h3 className="text-xl font-bold text-foreground mb-4">Interested in Working Together?</h3>
               <p className="text-muted-foreground mb-6">
@@ -154,14 +144,10 @@ const Hero = () => {
                   <Mail size={18} />
                   Work With Me
                 </a>
-                <a href="https://flowcv.com/resume/d5baa23saiuu" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-md border border-border text-foreground hover:bg-muted transition-all duration-300 text-center justify-center">
-                  <Download size={18} />
-                  Download Resume
-                </a>
+                {/* === "Download Resume" BUTTON REMOVED FROM HERE === */}
               </div>
             </div>
 
-            {/* Added id="projects" for scrolling */}
             <div id="projects" className="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-mt-20">
               {projects.map((item) => (
                 <div key={item.title} className="bg-card rounded-lg p-6 border border-border flex flex-col justify-between">
