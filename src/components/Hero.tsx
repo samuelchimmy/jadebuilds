@@ -90,17 +90,17 @@ const Hero = () => {
         </h1>
         {/* === ANIMATION MODIFICATION END === */}
         
-        <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-border px-3 py-1.5 rounded-full my-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-border px-3 py-1.5 rounded-full my-4 animate-fade-in" style={{ animationDelay: '2.5s' }}>
           AI-Native Full-Stack Developer
         </div>
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed animate-fade-in text-sm sm:text-base px-4" style={{ animationDelay: '0.6s' }}>
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed animate-fade-in text-sm sm:text-base px-4" style={{ animationDelay: '2.7s' }}>
           I'm a <strong className="text-foreground">Software Engineer</strong> with passion for problem-solving, strong foundation in computer science principles and proven track record of delivering high-quality and scalable code.
         </p>
-        <button onClick={handleExploreClick} className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-foreground text-background hover:bg-foreground/80 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-muted-foreground/30 animate-fade-in text-sm sm:text-base" style={{ animationDelay: '0.8s' }}>
+        <button onClick={handleExploreClick} className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-foreground text-background hover:bg-foreground/80 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-muted-foreground/30 animate-fade-in text-sm sm:text-base" style={{ animationDelay: '2.9s' }}>
           {showPortfolio ? 'Hide Details' : 'Explore'} 
           <ExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
-        <div className="my-8 animate-fade-in" style={{ animationDelay: '1s' }}>
+        <div className="my-8 animate-fade-in" style={{ animationDelay: '3.1s' }}>
           <div className="flex justify-center space-x-6">
             <a href="https://github.com/samuelchimmy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
               <Github size={20} className="sm:w-6 sm:h-6" />
