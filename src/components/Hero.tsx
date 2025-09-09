@@ -1,27 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
-
-// A robust typing animation hook
-const useTypingEffect = (textToType: string, interKeyStrokeDurationInMs: number) => {
-  const [currentText, setCurrentText] = useState('');
-
-  useEffect(() => {
-    setCurrentText(''); 
-    const timeouts = textToType.split('').map((char, index) => {
-      return setTimeout(() => {
-        setCurrentText((prev) => prev + char);
-      }, interKeyStrokeDurationInMs * (index + 1));
-    });
-
-    return () => {
-      timeouts.forEach(clearTimeout);
-    };
-  }, [textToType, interKeyStrokeDurationInMs]);
-
-  return currentText;
-};
-
-
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +11,6 @@ const Hero = () => {
   // === ANIMATION MODIFICATION START ===
   // 1. Changed the text to the full phrase.
   // 2. Reduced the interval from 150ms to 70ms for a smoother, faster effect.
-  const typedIntro = useTypingEffect("Hello! I'm Samuel", 70);
   // === ANIMATION MODIFICATION END ===
 
   const projects = [
@@ -108,9 +85,8 @@ const Hero = () => {
 
         {/* === ANIMATION MODIFICATION START === */}
         {/* The h1 element now displays the full, smoother animation */}
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-in whitespace-nowrap" style={{ animationDelay: '0.2s' }}>
-          {typedIntro}
-          <span className="blinking-cursor">|</span>
+               <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3">
+          <span className="typewriter">Hello! I'm Samuel</span>
         </h1>
         {/* === ANIMATION MODIFICATION END === */}
         
