@@ -6,11 +6,15 @@
 
 @layer base {
   :root {
-    --background: 260 20% 5%;
+    /* === COLOR MODIFICATION START === */
+    /* Changed from dark purple to a dark, desaturated green */
+    --background: 140 15% 6%; 
     --foreground: 270 30% 92%;
 
-    --card: 265 25% 10%;
+    /* Updated card color to match the new green theme */
+    --card: 140 12% 10%; 
     --card-foreground: 270 30% 95%;
+    /* === COLOR MODIFICATION END === */
 
     --popover: 260 20% 5%;
     --popover-foreground: 270 30% 92%;
@@ -102,7 +106,7 @@
   
   .metric-fill {
     @apply absolute h-full rounded-full bg-gradient-to-r from-terminal-green to-terminal-blue;
-    animation: fillAnimation 1.s ease-out forwards;
+    animation: fillAnimation 1.5s ease-out forwards;
   }
   
   @keyframes fillAnimation {
