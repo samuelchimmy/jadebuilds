@@ -3,18 +3,19 @@ import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'l
 // 1. IMPORT THE NEW INTERACTIVE BACKGROUND COMPONENT
 import InteractiveDoodleBackground from './InteractiveDoodleBackground';
 
-// 2. PASTE YOUR SVG CODE HERE
-// Note: It's best practice to pass the SVG as a string literal (using backticks ``)
-const myDoodleSvgString = `
-  <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
-    <!-- PASTE THE SVG CODE YOU COPIED FROM CANVA/YOUR TEXT EDITOR RIGHT HERE -->
-    <!-- For example: <path d="..."/> <path d="..."/> -->
-  </svg>
-`;
-
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // 2. ADD STATE AND LOADING FOR SVG FILE
+  const [svgContent, setSvgContent] = useState('');
+
+  useEffect(() => {
+    fetch('/mydoodles.svg')
+      .then(response => response.text())
+      .then(setSvgContent)
+      .catch(error => console.error('Failed to load SVG:', error));
+  }, []);
   
   const handleExploreClick = () => {
     setShowPortfolio(!showPortfolio);
@@ -22,7 +23,7 @@ const Hero = () => {
   
   const projects = [
     { title: "My Portfolio", desc: "The interactive portfolio you are currently viewing. Built from scratch to showcase my skills in front-end development and design.", link: "https://0xnotes.lol", tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'] },
-    { title: "OptimumStar", desc: "A quiz app designed to teach the Optimum whitepaper — the world’s first high-performance memory infrastructure for any blockchain.", link: "https://optimumstar.quest/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
+    { title: "OptimumStar", desc: "A quiz app designed to teach the Optimum whitepaper — the world's first high-performance memory infrastructure for any blockchain.", link: "https://optimumstar.quest/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
     { title: "SuccinctStar", desc: "A quiz app designed to teach the Succinct whitepaper — a zero-knowledge infrastructure network powering verifiable computation at scale.", link: "https://succinctstar.club/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
     { title: "Saros SDK Docs", desc: "A developer documentation project for Saros SDKs, featuring guides and examples that cut friction and fast-track builders from zero to shipping.", link: "https://sarodocs.hashnode.space/default-guide/introduction/welcome-to-saros-sdks", tags: ['React', 'TypeScript', 'Rust', 'Technical Writing'] },
     { title: "Learnable AI", desc: "A next-gen study app for universities, built with AI-first workflows. Features quiz systems, CGPA calculation, and exam prep.", link: "https://learnable.fun", tags: ['React', 'Vite', 'TypeScript', 'SQL'] },
@@ -43,8 +44,8 @@ const Hero = () => {
 
   return (
     <div className="min-h-screen text-foreground flex flex-col">
-      {/* 3. RENDER THE INTERACTIVE BACKGROUND */}
-      <InteractiveDoodleBackground svgString={myDoodleSvgString} />
+      {/* 3. RENDER THE INTERACTIVE BACKGROUND - Only if SVG content is loaded */}
+      {svgContent && <InteractiveDoodleBackground svgString={svgContent} />}
 
       {/* Header (All your existing content remains) */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
