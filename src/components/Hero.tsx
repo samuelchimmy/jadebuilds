@@ -82,7 +82,7 @@ const Hero = () => {
           <ExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
         
-        {/* === SOCIAL LINKS MOVED HERE === */}
+        {/* Social Links */}
         <div className="my-8 animate-fade-in" style={{ animationDelay: '1s' }}>
           <div className="flex justify-center space-x-6">
             <a href="https://github.com/samuelchimmy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
@@ -99,7 +99,6 @@ const Hero = () => {
             </a>
           </div>
         </div>
-        {/* === END OF MOVED SECTION === */}
 
         {/* Portfolio Quick Links */}
         {showPortfolio && <div className="w-full max-w-4xl animate-fade-in space-y-8">
@@ -125,4 +124,32 @@ const Hero = () => {
                 { title: "Learnable AI", desc: "A next-gen study app for Nigerian universities...", link: "https://learnable.fun" },
                 { title: "CodeBox", desc: "A polished, high-speed developer toolkit made with AI-assisted development.", link: "https://codebox.help" },
                 { title: "0xfarmer Community", desc: "Founded a thriving Web3 community of 1,000+ members...", links: [{ name: "Telegram", url: "https://t.me/+Ma4xal22__g3OTgx" }, { name: "WhatsApp", url: "https://www.whatsapp.com/channel/0029VaAs0DMH5JLwrAD3wM1U" }] },
-                { title: "B
+                // === BUG FIX: Restored the incomplete line below ===
+                { title: "Blog & Writing", desc: "Technical writing and thought leadership on DeFi, Web3, and AI development.", link: "https://jadeofwallstreet.hashnode.dev/" }
+              ].map((item) => (
+                // Added a key for React best practices
+                <div key={item.title} className="bg-card rounded-lg p-6 border border-border">
+                  <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
+                  <p className="text-muted-foreground mb-4 text-sm">{item.desc}</p>
+                  {item.link && (
+                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground hover:text-muted-foreground transition-colors text-sm font-medium">
+                      {item.title.includes("Blog") ? "Read Articles" : "Visit Site"} <ExternalLink size={14} />
+                    </a>
+                  )}
+                  {item.links && (
+                    <div className="flex gap-4">
+                      {item.links.map(link => (
+                        <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground hover:text-muted-foreground transition-colors text-sm font-medium">
+                          {link.name} <ExternalLink size={14} />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>}
+      </div>
+    </div>;
+};
+export default Hero;
