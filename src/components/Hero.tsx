@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Mail, Linkedin, MessageSquare, Link, Download, ExternalLink, Menu } from 'lucide-react';
+// === ICON MODIFICATION START ===
+// Replaced 'MessageSquare' with 'X' for the Twitter/X icon
+import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
+// === ICON MODIFICATION END ===
 
 // Custom Hook for the Typing Animation
 const useTypingEffect = (textToType: string, interKeyStrokeDurationInMs: number) => {
@@ -61,8 +64,6 @@ const Hero = () => {
           Hello! I'm <span className="text-terminal-green">{typedName}</span>
           <span className="blinking-cursor">|</span>
         </h1>
-        
-        {/* === "Also known as..." TEXT REMOVED FROM HERE === */}
 
         {/* Role Badge */}
         <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-terminal-green/30 px-3 py-1.5 rounded-full my-4 animate-fade-in whitespace-nowrap" style={{
@@ -162,9 +163,12 @@ const Hero = () => {
           <a href="https://github.com/samuelchimmy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-terminal-green transition-colors" aria-label="GitHub">
             <Github size={20} className="sm:w-6 sm:h-6" />
           </a>
+          {/* === ICON MODIFICATION START === */}
+          {/* Replaced <MessageSquare /> with <X /> */}
           <a href="https://x.com/MetisCharter" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-terminal-green transition-colors" aria-label="Twitter">
-            <MessageSquare size={20} className="sm:w-6 sm:h-6" />
+            <X size={20} className="sm:w-6 sm:h-6" />
           </a>
+          {/* === ICON MODIFICATION END === */}
           <a href="https://www.linkedin.com/in/samuelchimmy1" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-terminal-green transition-colors" aria-label="LinkedIn">
             <Linkedin size={20} className="sm:w-6 sm:h-6" />
           </a>
