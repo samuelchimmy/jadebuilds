@@ -100,8 +100,8 @@
   /* === CURSOR GAP FIX START === */
   @keyframes typing {
     from { width: 0 }
-    /* Adjusted from 17ch to 16.5ch to perfectly fit the text */
-    to { width: 10ch }
+    /* Adjusted from 17ch to 12ch to perfectly fit the text */
+    to { width: 12ch }
   }
   /* === CURSOR GAP FIX END === */
 
