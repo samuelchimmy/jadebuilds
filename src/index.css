@@ -87,13 +87,10 @@
     animation-delay: 0.3s;
     animation-fill-mode: both;
   }
-  /* === CURSOR GAP FIX START === */
   @keyframes typing {
     from { width: 0 }
-    /* Adjusted from 17ch to 11ch to perfectly fit the text */
     to { width: 11ch }
   }
-  /* === CURSOR GAP FIX END === */
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: hsl(var(--foreground)); }
@@ -101,12 +98,29 @@
 
   /* === INTERACTIVE DOODLE STYLES START === */
   .interactive-doodle {
-    /* This makes the animation smooth */
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   .doodle-active {
-    /* This is the "animated" state. You can customize this! */
     transform: scale(1.25) rotate(-8deg);
   }
   /* === INTERACTIVE DOODLE STYLES END === */
+  
+  /* === SVG BACKGROUND STYLES START === */
+  .svg-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; 
+    overflow: hidden;
+  }
+
+  .svg-background svg {
+    width: 100%;
+    height: 100%;
+    /* This makes the SVG cover the area, like 'background-size: cover' */
+    object-fit: cover; 
+  }
+  /* === SVG BACKGROUND STYLES END === */
 }
