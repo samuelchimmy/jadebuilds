@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@100..900&display=swap');
+/* === FONT MODIFICATION: Removed the old @import rule. Fonts are now imported in index.html === */
 
 @tailwind base;
 @tailwind components;
@@ -6,37 +6,27 @@
 
 @layer base {
   :root {
-    /* === BLACK & WHITE THEME MODIFICATION START === */
+    /* Black & White Theme */
     --background: 0 0% 100%;    /* White */
     --foreground: 0 0% 13%;     /* Near Black for text */
-
     --card: 0 0% 98%;           /* Very light grey for cards */
     --card-foreground: 0 0% 13%; /* Near Black */
-
     --popover: 0 0% 100%;        /* White */
     --popover-foreground: 0 0% 13%; /* Near Black */
-
     --primary: 0 0% 13%;         /* Near Black */
     --primary-foreground: 0 0% 100%; /* White */
-
     --secondary: 0 0% 50%;       /* Grey */
     --secondary-foreground: 0 0% 100%; /* White */
-
     --muted: 0 0% 96%;           /* Light grey */
     --muted-foreground: 0 0% 45%;    /* Softer grey for muted text */
-
     --accent: 0 0% 13%;          /* Near Black */
     --accent-foreground: 0 0% 100%;  /* White */
-
-    --destructive: 0 84.2% 60.2%; /* (Left as default red, for errors) */
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 0 0% 90%;          /* Light grey for borders */
     --input: 0 0% 93%;           /* Light grey for inputs */
     --ring: 0 0% 13%;            /* Near Black for focus rings */
-
     --radius: 0.5rem;
-    /* === BLACK & WHITE THEME MODIFICATION END === */
   }
 
   * {
@@ -44,9 +34,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono;
-    /* Removed the background-image property */
-    font-family: 'Fira Code', monospace;
+    @apply bg-background text-foreground;
+    /* === FONT MODIFICATION: Changed to 'Henny Penny' === */
+    font-family: 'Henny Penny', cursive;
     /* Updated scrollbar to be neutral grey */
     scrollbar-color: #a3a3a3 #f1f1f1;
     scrollbar-width: thin;
@@ -62,152 +52,26 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Light grey track */
+    background: #f1f1f1;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #a3a3a3; /* Medium grey thumb */
+    background: #a3a3a3;
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #8a8a8a; /* Darker grey on hover */
+    background: #8a8a8a;
   }
 }
 
 @layer components {
-  /* ... (All other components are kept, their colors will update via the variables) ... */
-  .text-gradient {
-    @apply bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent;
-  }
-  
-  .terminal-container {
-    @apply border border-brand-purple/30 rounded-md p-6 backdrop-blur-sm relative;
-    background: rgba(18, 18, 18, 0.7);
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.15);
-  }
-  
-  .tweet-card {
-    @apply relative overflow-hidden rounded-lg border border-muted bg-card p-5 transition-all duration-300;
-    background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(15, 15, 15, 0.8));
-    backdrop-filter: blur(5px);
-  }
-  
-  .tweet-card:hover {
-    @apply border-brand-purple/50;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
-    transform: translateY(-5px);
-  }
-
-  .metric-bar {
-    @apply h-2 rounded-full bg-gradient-to-r from-terminal-green/30 to-terminal-blue/30 relative overflow-hidden;
-  }
-  
-  .metric-fill {
-    @apply absolute h-full rounded-full bg-gradient-to-r from-terminal-green to-terminal-blue;
-    animation: fillAnimation 1.5s ease-out forwards;
-  }
-  
-  @keyframes fillAnimation {
-    from { width: 0; }
-    to { width: var(--fill-percent); }
-  }
-  
-  .code-snippet {
-    @apply bg-muted rounded-md p-4 text-sm overflow-x-auto;
-  }
-  
-  .section-heading {
-    @apply text-2xl md:text-3xl font-bold mb-6 text-gradient;
-  }
-  
-  .section-title::before {
-    content: "# ";
-    @apply text-terminal-green/70;
-  }
-  
-  .animated-button {
-    @apply transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-terminal-green/20;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .animated-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(74, 246, 38, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: 0.6s;
-    z-index: -1;
-  }
-  
-  .animated-button:hover::after {
-    transform: translateX(100%);
-  }
-  
-  .link-hover {
-    @apply relative transition-all duration-300;
-  }
-  
-  .link-hover::after {
-    content: '';
-    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-terminal-green transition-all duration-300;
-  }
-  
-  .link-hover:hover::after {
-    @apply w-full;
-  }
-  
+  /* Neutral hover effect for social icons */
   .icon-hover {
-    @apply transition-all duration-300 transform hover:scale-110 hover:text-terminal-green;
+    @apply transition-all duration-300 transform hover:scale-110 hover:text-foreground;
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-  }
-  
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .stagger-1 { transition-delay: 0.1s; }
-  .stagger-2 { transition-delay: 0.2s; }
-  .stagger-3 { transition-delay: 0.3s; }
-  .stagger-4 { transition-delay: 0.4s; }
-  .stagger-5 { transition-delay: 0.5s; }
-  
-  .glow-on-hover {
-    @apply transition-all duration-300;
-  }
-  
-  .glow-on-hover:hover {
-    box-shadow: 0 0 15px rgba(74, 246, 38, 0.5);
-  }
-  
-  .scale-on-hover {
-    @apply transition-all duration-300;
-  }
-  
-  .scale-on-hover:hover {
-    transform: scale(1.05);
-  }
-  
-  .float-on-hover {
-    @apply transition-all duration-300;
-  }
-  
-  .float-on-hover:hover {
-    transform: translateY(-8px);
-  }
-
-  /* Updated blinking cursor to be black */
+  /* Blinking cursor is now black */
   .blinking-cursor {
     @apply font-light text-foreground/80;
     animation: blink 1s step-end infinite;
@@ -221,10 +85,18 @@
       color: hsl(var(--foreground) / 0.8);
     }
   }
-}
 
-/* Twitter tweet embed customization */
-.twitter-tweet {
-  margin: 0 auto;
-  max-width: 100% !important;
+  /* (The following classes are no longer used but are kept for structure) */
+  .text-gradient { @apply text-foreground; }
+  .terminal-container { @apply border rounded-md p-6; }
+  .tweet-card { @apply rounded-lg border bg-card p-5; }
+  .metric-bar { @apply h-2 rounded-full bg-muted; }
+  .metric-fill { @apply h-full rounded-full bg-foreground; }
+  .code-snippet { @apply bg-muted rounded-md p-4 text-sm overflow-x-auto; }
+  .section-heading { @apply text-2xl md:text-3xl font-bold mb-6 text-foreground; }
+  .animated-button { @apply transition-all duration-300; }
+  .link-hover { @apply relative transition-all duration-300; }
+  .glow-on-hover { @apply transition-all duration-300; }
+  .scale-on-hover { @apply transition-all duration-300; }
+  .float-on-hover { @apply transition-all duration-300; }
 }
