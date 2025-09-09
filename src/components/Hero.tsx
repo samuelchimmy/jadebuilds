@@ -30,7 +30,7 @@ const Hero = () => {
     setShowPortfolio(!showPortfolio);
   };
   
-  const typedName = useTypingEffect("Samuel", 150);
+  const typedName = useTypingEffect("Jade", 150);
 
   return <div className="min-h-screen text-foreground flex flex-col">
       {/* Header */}
