@@ -14,23 +14,10 @@ const InteractiveDoodleBackground = ({ svgString }: DoodleBackgroundProps) => {
   // We use useMemo to ensure this complex processing only runs once.
   const processedSvg = useMemo(() => {
     let processed = svgString;
-    
-    // Remove existing width/height attributes and set viewBox if not present
-    processed = processed.replace(/width="[^"]*"/g, '');
-    processed = processed.replace(/height="[^"]*"/g, '');
-    
-    // If no viewBox exists, add one based on the original dimensions
-    if (!processed.includes('viewBox')) {
-      processed = processed.replace('<svg', '<svg viewBox="0 0 1414 2000"');
-    }
-    
-    // Add responsive attributes
-    processed = processed.replace('<svg', '<svg width="100vw" height="100vh" preserveAspectRatio="xMidYMid slice"');
-    
     // This regular expression finds top-level shapes/groups in the SVG
     // and adds a unique ID and a common class to each one.
     let idCounter = 0;
-    const regex = /<(path|g|circle|rect|ellipse|text)/g;
+    const regex = /<(path|g|circle|rect|ellipse)/g;
     processed = processed.replace(regex, (match) => {
       idCounter++;
       // We add a class for styling and an ID for tracking
@@ -39,13 +26,11 @@ const InteractiveDoodleBackground = ({ svgString }: DoodleBackgroundProps) => {
     return processed;
   }, [svgString]);
 
-  // --- Function to update doodle positions ---
-  const updateDoodlePositions = () => {
+  // --- Initialization Effect ---
+  // This runs once after the component mounts to find all the doodles.
+  useEffect(() => {
     const container = svgContainerRef.current;
     if (!container) return;
-
-    const svgElement = container.querySelector('svg');
-    if (!svgElement) return;
 
     const doodles = container.querySelectorAll('.interactive-doodle');
     doodles.forEach(el => {
@@ -57,30 +42,23 @@ const InteractiveDoodleBackground = ({ svgString }: DoodleBackgroundProps) => {
         y: rect.top + rect.height / 2,
       });
     });
-  };
-
-  // --- Initialization Effect ---
-  useEffect(() => {
-    // Small delay to ensure SVG is rendered
-    const timer = setTimeout(() => {
-      updateDoodlePositions();
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [processedSvg]);
+  }, [processedSvg]); // Re-run if the SVG string changes
 
   // --- Mouse Tracking Effect ---
+  // This effect adds the listener that tracks the cursor.
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const { clientX, clientY } = event;
       
       // The distance (in pixels) at which doodles will start to react
       const proximityThreshold = 100;
+
       doodleDataRef.current.forEach(data => {
         // Calculate distance from mouse to the center of the doodle
         const distance = Math.sqrt(
           Math.pow(clientX - data.x, 2) + Math.pow(clientY - data.y, 2)
         );
+
         // If the mouse is close enough, add the 'active' class. Otherwise, remove it.
         if (distance < proximityThreshold) {
           data.el.classList.add('doodle-active');
@@ -90,20 +68,11 @@ const InteractiveDoodleBackground = ({ svgString }: DoodleBackgroundProps) => {
       });
     };
 
-    // --- Scroll and Resize Handlers ---
-    const handleScrollOrResize = () => {
-      updateDoodlePositions();
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScrollOrResize, { passive: true });
-    window.addEventListener('resize', handleScrollOrResize, { passive: true });
 
-    // Clean up the listeners when the component is removed
+    // Clean up the listener when the component is removed
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScrollOrResize);
-      window.removeEventListener('resize', handleScrollOrResize);
     };
   }, []);
 
@@ -114,11 +83,10 @@ const InteractiveDoodleBackground = ({ svgString }: DoodleBackgroundProps) => {
         position: 'fixed', 
         top: 0, 
         left: 0, 
-        width: '100vw', 
-        height: '100vh', 
+        width: '100%', 
+        height: '100%', 
         zIndex: -1, 
-        overflow: 'hidden',
-        pointerEvents: 'none' // This ensures the background doesn't interfere with clicking
+        overflow: 'hidden' 
       }}
       // This is the standard way to render a string as HTML/SVG in React
       dangerouslySetInnerHTML={{ __html: processedSvg }} 
