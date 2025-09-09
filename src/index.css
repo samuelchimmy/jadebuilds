@@ -102,7 +102,7 @@
   
   .metric-fill {
     @apply absolute h-full rounded-full bg-gradient-to-r from-terminal-green to-terminal-blue;
-    animation: fillAnimation 1.5s ease-out forwards;
+    animation: fillAnimation 1.s ease-out forwards;
   }
   
   @keyframes fillAnimation {
