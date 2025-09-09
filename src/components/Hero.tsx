@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
 
-// A new, more robust typing animation hook
+// A robust typing animation hook
 const useTypingEffect = (textToType: string, interKeyStrokeDurationInMs: number) => {
   const [currentText, setCurrentText] = useState('');
 
@@ -30,6 +30,60 @@ const Hero = () => {
   
   const typedName = useTypingEffect("Samuel", 150);
 
+  // === PROJECT LIST MODIFICATION START ===
+  // The entire project list has been rebuilt with your new content and a 'tags' field.
+  const projects = [
+    { 
+      title: "My Portfolio", 
+      desc: "The interactive portfolio you are currently viewing. Built from scratch to showcase my skills in front-end development and design.", 
+      link: "https://0xnotes.lol",
+      tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS']
+    },
+    { 
+      title: "OptimumStar", 
+      desc: "A quiz app designed to teach the Optimum whitepaper — the world’s first high-performance memory infrastructure for any blockchain.", 
+      link: "https://optimumstar.quest/",
+      tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite']
+    },
+    { 
+      title: "SuccinctStar", 
+      desc: "A quiz app designed to teach the Succinct whitepaper — a zero-knowledge infrastructure network powering verifiable computation at scale.", 
+      link: "https://succinctstar.club/",
+      tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite']
+    },
+    { 
+      title: "Saros SDK Docs", 
+      desc: "A developer documentation project for Saros SDKs, featuring guides and examples that cut friction and fast-track builders from zero to shipping.", 
+      link: "https://sarodocs.hashnode.space/default-guide/introduction/welcome-to-saros-sdks",
+      tags: ['React', 'TypeScript', 'Rust', 'Technical Writing']
+    },
+    { 
+      title: "Learnable AI", 
+      desc: "A next-gen study app for universities, built with AI-first workflows. Features quiz systems, CGPA calculation, and exam prep.", 
+      link: "https://learnable.fun",
+      tags: ['React', 'Vite', 'TypeScript', 'SQL']
+    },
+    { 
+      title: "CodeBox", 
+      desc: "A polished, high-speed developer toolkit made with AI-assisted development. Export-ready tools with blazing-fast UI.", 
+      link: "https://codebox.help",
+      tags: ['React', 'Vite', 'TypeScript']
+    },
+    { 
+      title: "Community Building", 
+      desc: "Founded a thriving Web3 community of 1,000+ members sharing airdrop strategies and DeFi insights.", 
+      links: [{ name: "Telegram", url: "https://t.me/+Ma4xal22__g3OTgx" }, { name: "WhatsApp", url: "https://www.whatsapp.com/channel/0029VaAs0DMH5JLwrAD3wM1U" }],
+      tags: ['Community Management', 'DeFi']
+    },
+    { 
+      title: "Blog & Writing", 
+      desc: "Technical writing and thought leadership on DeFi, Web3, and AI development.", 
+      link: "https://jadeofwallstreet.hashnode.dev/",
+      tags: ['Technical Writing', 'Web3', 'AI']
+    }
+  ];
+  // === PROJECT LIST MODIFICATION END ===
+
   return <div className="min-h-screen text-foreground flex flex-col">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
@@ -47,42 +101,25 @@ const Hero = () => {
 
       {/* Main Profile Section */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 pt-24">
-        {/* Profile Image */}
         <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-card border-2 border-border flex items-center justify-center mb-6 animate-fade-in">
           <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-muted flex items-center justify-center">
             <span className="text-xl md:text-2xl font-bold text-foreground">J</span>
           </div>
         </div>
-
-        {/* Main Heading */}
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-in whitespace-nowrap" style={{
-        animationDelay: '0.2s'
-      }}>
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-in whitespace-nowrap" style={{ animationDelay: '0.2s' }}>
           Hello! I'm <span className="text-foreground font-bold">{typedName}</span>
           <span className="blinking-cursor">|</span>
         </h1>
-
-        {/* Role Badge */}
-        <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-border px-3 py-1.5 rounded-full my-4 animate-fade-in" style={{
-        animationDelay: '0.4s'
-      }}>AI-Native Full-Stack Developer</div>
-
-        {/* Description */}
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed animate-fade-in text-sm sm:text-base px-4" style={{
-        animationDelay: '0.6s'
-      }}>
+        <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-border px-3 py-1.5 rounded-full my-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          AI-Native Full-Stack Developer
+        </div>
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed animate-fade-in text-sm sm:text-base px-4" style={{ animationDelay: '0.6s' }}>
           I'm a <strong className="text-foreground">Software Engineer</strong> with passion for problem-solving, strong foundation in computer science principles and proven track record of delivering high-quality and scalable code.
         </p>
-
-        {/* Main CTA Button */}
-        <button onClick={handleExploreClick} className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-foreground text-background hover:bg-foreground/80 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-muted-foreground/30 animate-fade-in text-sm sm:text-base" style={{
-        animationDelay: '0.8s'
-      }}>
+        <button onClick={handleExploreClick} className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-md bg-foreground text-background hover:bg-foreground/80 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-muted-foreground/30 animate-fade-in text-sm sm:text-base" style={{ animationDelay: '0.8s' }}>
           {showPortfolio ? 'Hide Details' : 'Explore'} 
           <ExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
-        
-        {/* Social Links */}
         <div className="my-8 animate-fade-in" style={{ animationDelay: '1s' }}>
           <div className="flex justify-center space-x-6">
             <a href="https://github.com/samuelchimmy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
@@ -103,9 +140,9 @@ const Hero = () => {
         {/* Portfolio Quick Links */}
         {showPortfolio && <div className="w-full max-w-4xl animate-fade-in space-y-8">
             <div className="bg-card rounded-lg p-6 border border-border">
-              <h3 className="text-xl font-bold text-foreground mb-4">Ready to collaborate?</h3>
+              <h3 className="text-xl font-bold text-foreground mb-4">Interested in Working Together?</h3>
               <p className="text-muted-foreground mb-6">
-                Got a product idea and want to ship it fast with AI? Let's turn your concept into a live, responsive web app with vibes and velocity.
+                I specialize in bringing ideas to life, from concept to deployment. If you have a project in mind or are looking for a dedicated engineer to join your team, I'd be delighted to connect.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="mailto:EdozieSammy101@gmail.com" className="flex items-center gap-2 px-4 py-2 rounded-md bg-foreground text-background hover:bg-foreground/80 transition-all duration-300 text-center justify-center">
@@ -119,32 +156,41 @@ const Hero = () => {
               </div>
             </div>
 
+            {/* The project grid now uses the new `projects` array */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: "Learnable AI", desc: "A next-gen study app for Nigerian universities...", link: "https://learnable.fun" },
-                { title: "CodeBox", desc: "A polished, high-speed developer toolkit made with AI-assisted development.", link: "https://codebox.help" },
-                { title: "0xfarmer Community", desc: "Founded a thriving Web3 community of 1,000+ members...", links: [{ name: "Telegram", url: "https://t.me/+Ma4xal22__g3OTgx" }, { name: "WhatsApp", url: "https://www.whatsapp.com/channel/0029VaAs0DMH5JLwrAD3wM1U" }] },
-                // === BUG FIX: Restored the incomplete line below ===
-                { title: "Blog & Writing", desc: "Technical writing and thought leadership on DeFi, Web3, and AI development.", link: "https://jadeofwallstreet.hashnode.dev/" }
-              ].map((item) => (
-                // Added a key for React best practices
-                <div key={item.title} className="bg-card rounded-lg p-6 border border-border">
-                  <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
-                  <p className="text-muted-foreground mb-4 text-sm">{item.desc}</p>
-                  {item.link && (
-                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground hover:text-muted-foreground transition-colors text-sm font-medium">
-                      {item.title.includes("Blog") ? "Read Articles" : "Visit Site"} <ExternalLink size={14} />
-                    </a>
-                  )}
-                  {item.links && (
-                    <div className="flex gap-4">
-                      {item.links.map(link => (
-                        <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground hover:text-muted-foreground transition-colors text-sm font-medium">
-                          {link.name} <ExternalLink size={14} />
-                        </a>
-                      ))}
-                    </div>
-                  )}
+              {projects.map((item) => (
+                <div key={item.title} className="bg-card rounded-lg p-6 border border-border flex flex-col justify-between">
+                  <div>
+                    <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
+                    <p className="text-muted-foreground mb-4 text-sm">{item.desc}</p>
+                  </div>
+                  <div>
+                    {/* === RENDER TAGS SECTION START === */}
+                    {item.tags && (
+                      <div className="flex flex-wrap gap-2 mt-auto mb-4">
+                        {item.tags.map(tag => (
+                          <span key={tag} className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {/* === RENDER TAGS SECTION END === */}
+                    {item.link && (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground hover:text-muted-foreground transition-colors text-sm font-medium">
+                        {item.title.includes("Blog") || item.title.includes("Docs") ? "Read More" : "Visit Site"} <ExternalLink size={14} />
+                      </a>
+                    )}
+                    {item.links && (
+                      <div className="flex gap-4">
+                        {item.links.map(link => (
+                          <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground hover:text-muted-foreground transition-colors text-sm font-medium">
+                            {link.name} <ExternalLink size={14} />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
