@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@100..900&display=swap');
 
 @tailwind base;
@@ -42,12 +41,25 @@
     @apply border-border;
   }
 
+  /* === MODIFICATION START === */
   body {
-    @apply bg-background text-foreground font-mono;
+    /* The original text color and font styles are preserved using @apply */
+    @apply text-foreground font-mono;
+
+    /* --- BACKGROUND REDESIGN --- */
+    /* 1. Set the original dark color as the base layer. */
+    background-color: hsl(var(--background));
+
+    /* 2. Add a subtle, repeating SVG grid pattern for the "doodle" effect. */
+    /* This SVG is URL-encoded to be placed directly here for performance. */
+    background-image: url("data:image/svg+xml,%3csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M10 0v20M0 10h20' stroke='hsla(270, 30%25, 92%25, 0.07)' stroke-width='1'/%3e%3c/svg%3e");
+    
+    /* --- Original font and scrollbar styles --- */
     font-family: 'Fira Code', monospace;
     scrollbar-color: rgba(74, 246, 38, 0.5) rgba(0, 0, 0, 0.1);
     scrollbar-width: thin;
   }
+  /* === MODIFICATION END === */
 
   html {
     scroll-behavior: smooth;
@@ -73,6 +85,7 @@
 }
 
 @layer components {
+  /* ... The rest of your CSS file remains exactly the same ... */
   .text-gradient {
     @apply bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent;
   }
