@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// === ICON MODIFICATION START ===
-// Replaced 'MessageSquare' with 'X' for the Twitter/X icon
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
-// === ICON MODIFICATION END ===
 
 // Custom Hook for the Typing Animation
 const useTypingEffect = (textToType: string, interKeyStrokeDurationInMs: number) => {
@@ -39,9 +36,20 @@ const Hero = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/50">
         <div className="flex items-center justify-between px-4 py-4">
-          <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-terminal-green to-foreground bg-clip-text text-transparent">
-            JadeofWallstreet
-          </h1>
+          
+          {/* === HEADER LOGO MODIFICATION START === */}
+          <div className="flex items-center gap-2">
+            <img 
+              className="h-6 w-6" 
+              src="https://img.icons8.com/pulsar-gradient/96/checkmark.png" 
+              alt="Checkmark logo"
+            />
+            <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-terminal-green to-foreground bg-clip-text text-transparent">
+              JadeofWallstreet
+            </h1>
+          </div>
+          {/* === HEADER LOGO MODIFICATION END === */}
+
           <button className="p-2 rounded-md bg-muted/20 border border-muted hover:bg-muted/30 transition-all duration-300">
             <Menu size={20} className="text-foreground" />
           </button>
@@ -163,12 +171,9 @@ const Hero = () => {
           <a href="https://github.com/samuelchimmy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-terminal-green transition-colors" aria-label="GitHub">
             <Github size={20} className="sm:w-6 sm:h-6" />
           </a>
-          {/* === ICON MODIFICATION START === */}
-          {/* Replaced <MessageSquare /> with <X /> */}
           <a href="https://x.com/MetisCharter" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-terminal-green transition-colors" aria-label="Twitter">
             <X size={20} className="sm:w-6 sm:h-6" />
           </a>
-          {/* === ICON MODIFICATION END === */}
           <a href="https://www.linkedin.com/in/samuelchimmy1" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-terminal-green transition-colors" aria-label="LinkedIn">
             <Linkedin size={20} className="sm:w-6 sm:h-6" />
           </a>
