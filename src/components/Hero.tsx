@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
+// 1. IMPORT THE NEW INTERACTIVE BACKGROUND COMPONENT
+import InteractiveDoodleBackground from './InteractiveDoodleBackground';
+
+// 2. PASTE YOUR SVG CODE HERE
+// Note: It's best practice to pass the SVG as a string literal (using backticks ``)
+const myDoodleSvgString = `
+  <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+    <!-- PASTE THE SVG CODE YOU COPIED FROM CANVA/YOUR TEXT EDITOR RIGHT HERE -->
+    <!-- For example: <path d="..."/> <path d="..."/> -->
+  </svg>
+`;
+
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,11 +20,6 @@ const Hero = () => {
     setShowPortfolio(!showPortfolio);
   };
   
-  // === ANIMATION MODIFICATION START ===
-  // 1. Changed the text to the full phrase.
-  // 2. Reduced the interval from 150ms to 70ms for a smoother, faster effect.
-  // === ANIMATION MODIFICATION END ===
-
   const projects = [
     { title: "My Portfolio", desc: "The interactive portfolio you are currently viewing. Built from scratch to showcase my skills in front-end development and design.", link: "https://0xnotes.lol", tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'] },
     { title: "OptimumStar", desc: "A quiz app designed to teach the Optimum whitepaper — the world’s first high-performance memory infrastructure for any blockchain.", link: "https://optimumstar.quest/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
@@ -24,20 +31,22 @@ const Hero = () => {
     { title: "Blog & Writing", desc: "Technical writing and thought leadership on DeFi, Web3, and AI development.", link: "https://jadeofwallstreet.hashnode.dev/", tags: ['Technical Writing', 'Web3', 'AI'] }
   ];
 
-  // Function to handle menu link clicks
   const handleMenuLinkClick = (sectionId: string) => {
     if (!showPortfolio) {
-      setShowPortfolio(true); // Ensure the content is visible if it's hidden
+      setShowPortfolio(true);
     }
-    setIsMenuOpen(false);   // Close the menu
-    // Use a timeout to allow the content to render before scrolling
+    setIsMenuOpen(false);
     setTimeout(() => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     }, 150);
   };
 
-  return <div className="min-h-screen text-foreground flex flex-col">
-      {/* Header */}
+  return (
+    <div className="min-h-screen text-foreground flex flex-col">
+      {/* 3. RENDER THE INTERACTIVE BACKGROUND */}
+      <InteractiveDoodleBackground svgString={myDoodleSvgString} />
+
+      {/* Header (All your existing content remains) */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="flex items-center justify-between px-4 py-4">
           <div className="flex items-center gap-2">
@@ -69,7 +78,6 @@ const Hero = () => {
                   Contact
                 </a>
               </li>
-              {/* === "Resume" LINK REMOVED FROM HERE === */}
             </ul>
           </nav>
         </div>
@@ -83,12 +91,9 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* === ANIMATION MODIFICATION START === */}
-        {/* The h1 element now displays the full, smoother animation */}
-               <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-3">
           <span className="typewriter">Hello! I'm Samuel</span>
         </h1>
-        {/* === ANIMATION MODIFICATION END === */}
         
         <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-border px-3 py-1.5 rounded-full my-4 animate-fade-in" style={{ animationDelay: '2.5s' }}>
           AI-Native Full-Stack Developer
@@ -169,6 +174,8 @@ const Hero = () => {
             </div>
           </div>}
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Hero;
