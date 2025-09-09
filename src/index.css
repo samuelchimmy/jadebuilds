@@ -101,7 +101,7 @@
   @keyframes typing {
     from { width: 0 }
     /* Adjusted from 17ch to 16.5ch to perfectly fit the text */
-    to { width: 16.5ch }
+    to { width: 10ch }
   }
   /* === CURSOR GAP FIX END === */
 
