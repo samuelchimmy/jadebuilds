@@ -1,5 +1,4 @@
 /* Fonts are now imported in index.html */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,22 +12,18 @@
     --muted-foreground: 0 0% 35%; /* Softer grey for muted text */
     --radius: 0.5rem;
   }
-
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
     font-family: 'Kalam', cursive;
     background-color: hsl(var(--background));
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAARlJREFUaAXt0LENgEAMRFEr2zaIOmYd1dCN2pkA/R9gZZCSQJL3P3g4EMe2bds2J0lJkm+y3N/3v+8LhmGu6/q+I4RwbN/3/b5fCKEsy3BdlmUYY5blynme5wkhxDRNkiRJEsaYpmk8z3Msy0IIURRFRVHEGPO8LK7rhmGMMQzDMIRlWVVVYIyZpkkURVkWx3E8z4UQ4rouy7Kqqgohewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewghewih2/wI/0gH0ZEdiAAAAAElFTkSuQmCC');
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Henny Penny', cursive;
   }
-
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: hsl(var(--background) / 0.5); }
   ::-webkit-scrollbar-thumb { background: #c7c7c7; border-radius: 4px; }
@@ -37,7 +32,6 @@
 
 @layer components {
   /* ... (Your existing .sketch-button, .sketch-card, etc. styles) ... */
-
   .sketch-button {
     @apply inline-block text-foreground border-2 border-foreground rounded-lg px-6 py-2 transition-all duration-200;
     border-radius: 8px 12px 9px 10px;
@@ -48,7 +42,7 @@
     background-color: rgba(0,0,0,0.04);
     transform: rotate(1deg) scale(1.05);
   }
-  
+
   .sketch-button-secondary {
     @apply inline-block text-muted-foreground border-2 border-border/50 rounded-lg px-6 py-2 transition-all duration-200;
     border-radius: 12px 9px 10px 8px;
@@ -58,14 +52,12 @@
     @apply bg-foreground/5 text-foreground;
     transform: rotate(-1deg) scale(1.05);
   }
-
   .sketch-card {
     @apply p-6 border-2 border-foreground/80;
     border-radius: 15px 10px 18px 12px;
     background-color: rgba(255,255,255,0.6);
     backdrop-filter: blur(2px);
   }
-
   .sketch-link {
     @apply relative inline-block text-foreground font-bold;
   }
@@ -82,21 +74,19 @@
   .sketch-link:hover::after {
     transform: scaleX(1);
   }
-
   .typewriter {
     display: inline-block;
     overflow: hidden; 
     border-right: 3px solid hsl(var(--foreground)); 
     white-space: nowrap; 
-    
+
     animation: 
       typing 2s steps(17, end), 
       blink-caret .75s step-end infinite;
-    
+
     animation-delay: 0.3s;
     animation-fill-mode: both;
   }
-
   /* === CURSOR GAP FIX START === */
   @keyframes typing {
     from { width: 0 }
@@ -104,9 +94,19 @@
     to { width: 11ch }
   }
   /* === CURSOR GAP FIX END === */
-
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: hsl(var(--foreground)); }
   }
+
+  /* === INTERACTIVE DOODLE STYLES START === */
+  .interactive-doodle {
+    /* This makes the animation smooth */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .doodle-active {
+    /* This is the "animated" state. You can customize this! */
+    transform: scale(1.25) rotate(-8deg);
+  }
+  /* === INTERACTIVE DOODLE STYLES END === */
 }
