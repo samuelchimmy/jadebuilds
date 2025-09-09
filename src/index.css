@@ -76,7 +76,6 @@
   .sketch-link::after {
     @apply absolute -bottom-0.5 left-0 w-full h-0.5;
     content: '';
-    /* Wavy underline effect */
     background-image: url('data:image/svg+xml;utf8,<svg width="100" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M0,3 C25,0,75,5,100,2" stroke="black" stroke-width="2" fill="none"/></svg>');
     background-repeat: repeat-x;
     background-size: contain;
@@ -88,13 +87,29 @@
     transform: scaleX(1);
   }
 
-  /* Blinking cursor is now an underscore for a "typed on paper" look */
-  .blinking-cursor {
-    @apply font-semibold;
-    animation: blink 1s step-end infinite;
+  /* === PURE CSS TYPEWRITER ANIMATION START === */
+  .typewriter {
+    display: inline-block;
+    overflow: hidden; 
+    border-right: 3px solid hsl(var(--foreground)); 
+    white-space: nowrap; 
+    
+    animation: 
+      typing 2s steps(17, end), 
+      blink-caret .75s step-end infinite;
+    
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
   }
-  @keyframes blink {
-    from, to { opacity: 0; }
-    50% { opacity: 1; }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 17ch } /* 17ch = "Hello! I'm Samuel" */
   }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: hsl(var(--foreground)); }
+  }
+  /* === PURE CSS TYPEWRITER ANIMATION END === */
 }
