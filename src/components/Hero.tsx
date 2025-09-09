@@ -30,7 +30,6 @@ const Hero = () => {
     setShowPortfolio(!showPortfolio);
   };
   
-  // === NAME CORRECTION: "Samuel" is now spelled correctly. ===
   const typedName = useTypingEffect("Samuel", 150);
 
   return <div className="min-h-screen text-foreground flex flex-col">
@@ -62,12 +61,11 @@ const Hero = () => {
           Hello! I'm <span className="text-terminal-green">{typedName}</span>
           <span className="blinking-cursor">|</span>
         </h1>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center mb-4 whitespace-nowrap">
-          Also known as JadeofWallstreet
-        </p>
+        
+        {/* === "Also known as..." TEXT REMOVED FROM HERE === */}
 
         {/* Role Badge */}
-        <div className="inline-.block text-xs sm:text-sm text-muted-foreground border border-terminal-green/30 px-3 py-1.5 rounded-full mb-4 animate-fade-in whitespace-nowrap" style={{
+        <div className="inline-block text-xs sm:text-sm text-muted-foreground border border-terminal-green/30 px-3 py-1.5 rounded-full my-4 animate-fade-in whitespace-nowrap" style={{
         animationDelay: '0.4s'
       }}>AI-Native Full-Stack Developer</div>
 
