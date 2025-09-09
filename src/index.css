@@ -41,25 +41,14 @@
     @apply border-border;
   }
 
-  /* === MODIFICATION START === */
   body {
-    /* The original text color and font styles are preserved using @apply */
     @apply text-foreground font-mono;
-
-    /* --- BACKGROUND REDESIGN --- */
-    /* 1. Set the original dark color as the base layer. */
     background-color: hsl(var(--background));
-
-    /* 2. Add a subtle, repeating SVG grid pattern for the "doodle" effect. */
-    /* This SVG is URL-encoded to be placed directly here for performance. */
     background-image: url("data:image/svg+xml,%3csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M10 0v20M0 10h20' stroke='hsla(270, 30%25, 92%25, 0.07)' stroke-width='1'/%3e%3c/svg%3e");
-    
-    /* --- Original font and scrollbar styles --- */
     font-family: 'Fira Code', monospace;
     scrollbar-color: rgba(74, 246, 38, 0.5) rgba(0, 0, 0, 0.1);
     scrollbar-width: thin;
   }
-  /* === MODIFICATION END === */
 
   html {
     scroll-behavior: smooth;
@@ -85,7 +74,6 @@
 }
 
 @layer components {
-  /* ... The rest of your CSS file remains exactly the same ... */
   .text-gradient {
     @apply bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text text-transparent;
   }
@@ -135,7 +123,6 @@
     @apply text-terminal-green/70;
   }
   
-  /* Button hover animations */
   .animated-button {
     @apply transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-terminal-green/20;
     position: relative;
@@ -176,7 +163,6 @@
     @apply transition-all duration-300 transform hover:scale-110 hover:text-terminal-green;
   }
 
-  /* Added animations for scroll effects */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -194,7 +180,6 @@
   .stagger-4 { transition-delay: 0.4s; }
   .stagger-5 { transition-delay: 0.5s; }
   
-  /* Advanced hover effects */
   .glow-on-hover {
     @apply transition-all duration-300;
   }
@@ -217,6 +202,20 @@
   
   .float-on-hover:hover {
     transform: translateY(-8px);
+  }
+
+  .blinking-cursor {
+    @apply font-light text-terminal-green/80;
+    animation: blink 1s step-end infinite;
+  }
+  
+  @keyframes blink {
+    from, to {
+      color: transparent;
+    }
+    50% {
+      color: hsl(var(--primary) / 0.8);
+    }
   }
 }
 
