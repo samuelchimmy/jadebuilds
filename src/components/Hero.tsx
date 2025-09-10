@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
 import InteractiveDoodleBackground from './InteractiveDoodleBackground';
+import useWindowWidth from '../hooks/useWindowWidth'; // Import the new hook
 
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [svgContent, setSvgContent] = useState('');
+  
+  const width = useWindowWidth(); // Use the hook to get window width
+  const isDesktop = width > 768; // Set our breakpoint
 
   useEffect(() => {
-    fetch('/mydoodles.svg')
+    // Conditionally fetch the correct SVG based on screen width
+    const svgFileToFetch = isDesktop ? '/mydoodles-desktop.svg' : '/mydoodles.svg';
+
+    fetch(svgFileToFetch)
       .then(response => response.text())
       .then(setSvgContent)
       .catch(error => console.error('Failed to load SVG:', error));
-  }, []);
+  }, [isDesktop]); // Re-run this effect if the user resizes across the breakpoint
   
   const handleExploreClick = () => {
     setShowPortfolio(!showPortfolio);
@@ -40,10 +47,10 @@ const Hero = () => {
   ];
 
   return (
-    // UPDATE THIS LINE: Conditionally add the 'portfolio-active' class
     <div className={`min-h-screen text-foreground flex flex-col ${showPortfolio ? 'portfolio-active' : ''}`}>
       
-      {svgContent && <InteractiveDoodleBackground svgString={svgContent} />}
+      {/* Pass the state down to the background component to control animations */}
+      {svgContent && <InteractiveDoodleBackground svgString={svgContent} isPortfolioActive={showPortfolio} />}
 
       <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="flex items-center justify-between px-4 py-4">
@@ -122,7 +129,7 @@ const Hero = () => {
             <div id="contact" className="bg-card rounded-lg p-6 border border-border scroll-mt-20">
               <h3 className="text-xl font-bold text-foreground mb-4">Interested in Working Together?</h3>
               <p className="text-muted-foreground mb-6">
-                I specialize in bringing ideas to life, from concept to deployment. If you have a project in mind or are looking for a dedicated engineer to join your team, I'd be delighted to connect.
+                I specialize in bringing ideas to life, from concept to deployment. If you have a project in mind or are for a dedicated engineer to join your team, I'd be delighted to connect.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="mailto:EdozieSammy101@gmail.com" className="flex items-center gap-2 px-4 py-2 rounded-md bg-foreground text-background hover:bg-foreground/80 transition-all duration-300 text-center justify-center">
