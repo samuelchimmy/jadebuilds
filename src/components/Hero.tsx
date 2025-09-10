@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, X, Link, Download, ExternalLink, Menu } from 'lucide-react';
 import InteractiveDoodleBackground from './InteractiveDoodleBackground';
+import useWindowWidth from '../hooks/useWindowWidth'; // Import the hook
 
 const Hero = () => {
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [svgContent, setSvgContent] = useState('');
+  
+  const width = useWindowWidth();
+  const isDesktop = width > 768;
 
   useEffect(() => {
-    fetch('/mydoodles.svg')
+    // UPDATE THIS LINE: Use your original SVG for mobile
+    const svgFileToFetch = isDesktop ? '/mydoodles-desktop.svg' : '/mydoodles.svg';
+
+    fetch(svgFileToFetch)
       .then(response => response.text())
       .then(setSvgContent)
       .catch(error => console.error('Failed to load SVG:', error));
-  }, []);
+  }, [isDesktop]); // Re-fetch if the user resizes across the breakpoint
   
   const handleExploreClick = () => {
     setShowPortfolio(!showPortfolio);
@@ -29,6 +36,7 @@ const Hero = () => {
   };
   
   const projects = [
+    // ... (Your projects array remains unchanged)
     { title: "My Portfolio", desc: "The interactive portfolio you are currently viewing. Built from scratch to showcase my skills in front-end development and design.", link: "https://0xnotes.lol", tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'] },
     { title: "OptimumStar", desc: "A quiz app designed to teach the Optimum whitepaper — the world's first high-performance memory infrastructure for any blockchain.", link: "https://optimumstar.quest/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
     { title: "SuccinctStar", desc: "A quiz app designed to teach the Succinct whitepaper — a zero-knowledge infrastructure network powering verifiable computation at scale.", link: "https://succinctstar.club/", tags: ['React', 'TypeScript', 'PostgreSQL', 'Vite'] },
@@ -40,11 +48,12 @@ const Hero = () => {
   ];
 
   return (
-    // UPDATE THIS LINE: Conditionally add the 'portfolio-active' class
     <div className={`min-h-screen text-foreground flex flex-col ${showPortfolio ? 'portfolio-active' : ''}`}>
       
-      {svgContent && <InteractiveDoodleBackground svgString={svgContent} />}
+      {/* Pass the state down to the background component */}
+      {svgContent && <InteractiveDoodleBackground svgString={svgContent} isPortfolioActive={showPortfolio} />}
 
+      {/* ... The rest of your Hero.tsx component remains the same ... */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="flex items-center justify-between px-4 py-4">
           <div className="flex items-center gap-2">
@@ -173,4 +182,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Hero;```
